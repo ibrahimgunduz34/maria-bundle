@@ -1,0 +1,29 @@
+{
+  "name": "ibrahimgunduz34/maria-bundle",
+  "description": "A Rule Engine Implementation For Symfony Projects",
+  "keywords": ["symfony", "symfony2", "symfony3", "symfony4", "rule", "engine", "business"],
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ibrahim Gunduz",
+      "email": "ibrahimgunduz34@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SweetCode\\MariaBundle\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.4.3"
+  },
+  "require": {
+    "php": "^5.6.2|^7.0",
+    "symfony/dependency-injection": "^3.4|^4.0",
+    "symfony/framework-bundle":     "^3.4|^4.0",
+    "symfony/config":               "^3.4|^4.0",
+    "symfony/event-dispatcher":     "^3.4|^4.0",
+    "symfony/serializer":           "^3.4|^4.0"
+  }
+}

@@ -1,0 +1,38 @@
+#services:
+#  maria.comparator.eql:
+#    class: "%maria.comparator.eql.class%"
+#    shared: false
+#    tags:
+#      - { name: 'maria.comparator', alias: 'eql' }
+#
+#  maria.comparator.gt:
+#    class: "%maria.comparator.gt.class%"
+#    shared: false
+#    tags:
+#      - { name: 'maria.comparator', alias: 'gt' }
+#
+#  maria.comparator.gte:
+#    class: "%maria.comparator.gte.class%"
+#    shared: false
+#    tags:
+#      - { name: 'maria.comparator', alias: 'gte' }
+#
+#  maria.comparator.lt:
+#    class: "%maria.comparator.lt.class%"
+#    shared: false
+#    tags:
+#      - { name: 'maria.comparator', alias: 'lt' }
+#
+#  maria.comparator.lte:
+#    class: "%maria.comparator.lte.class%"
+#    shared: false
+#    tags:
+#      - { name: 'maria.comparator', alias: 'lte' }
+#
+#  maria.comparator.in:
+#    class: "%maria.comparator.in.class%"
+#    shared: false
+#    tags:
+#      - { name: 'maria.comparator', alias: 'in' }
+#
+#
