@@ -1,16 +1,27 @@
 <?php
 namespace SweetCode\MariaBundle\Matcher;
 
+use SweetCode\MariaBundle\Exception\InvalidArgumentException;
+
 class AnyMatcher extends Matcher
 {
-    /**
-     * Check whether the current element of the iterator is acceptable
-     * @link https://php.net/manual/en/filteriterator.accept.php
-     * @return bool true if the current element is acceptable, otherwise false.
-     * @since 5.1.0
-     */
-    public function accept()
+    public function match($object)
     {
-        // TODO: Implement accept() method.
+        /**
+         * @TODO In fact, all and any operators are totally the same with AND and OR operators.
+         * For the next version the project might need a refactoring in order to reuse operators
+         * to perform matching operation.
+         */
+
+        if (!is_iterable($object)) {
+            throw new InvalidArgumentException('Input argument must be iterable.');
+        }
+
+        foreach ($object as $item) {
+            if ($this->getOperator()->compare($item)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,5 +1,5 @@
 parameters:
-  maria.event_listener.trigger_event.class: SweetCode\MariaBundle\EventListener\TriggerEventListener
+  maria.event_listener.trigger.class: SweetCode\MariaBundle\Listener\TriggerEventListener
 
   maria.comparator.eql.class: SweetCode\MariaBundle\Comparator\EqualComparator
   maria.comparator.gt.class: SweetCode\MariaBundle\Comparator\GreaterComparator
@@ -14,8 +14,14 @@ parameters:
   maria.matcher.last.class: SweetCode\MariaBundle\Matcher\LastMatcher
   maria.matcher.none.class: SweetCode\MariaBundle\Matcher\NoneMatcher
 
-  maria.service_factory.matcher_context_factory.class: SweetCode\MariaBundle\DependencyInjection\MatcherContextFactory
+  maria.service_factory.matcher.class: SweetCode\MariaBundle\MAtcher\MatcherFactory
+  maria.service_factory.operator.class: SweetCode\MariaBundle\Operator\OperatorFactory
 
 services:
-  maria.service_factory.matcher_context_factory:
-        class: "%maria.service_factory.matcher_context_factory.class%"
+  maria.service_factory.operator:
+      class: '%maria.service_factory.operator.class%'
+
+  maria.service_factory.matcher:
+      class: "%maria.service_factory.matcher.class%"
+      arguments:
+        - '@maria.service_factory.operator'

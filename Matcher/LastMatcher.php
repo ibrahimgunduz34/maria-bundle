@@ -3,7 +3,7 @@ namespace SweetCode\MariaBundle\Matcher;
 
 use SweetCode\MariaBundle\Exception\InvalidArgumentException;
 
-class FirstMatcher extends Matcher
+class LastMatcher extends Matcher
 {
     public function match($object)
     {
@@ -11,7 +11,7 @@ class FirstMatcher extends Matcher
             throw new InvalidArgumentException('Input argument must be iterable.');
         }
 
-        $first = reset($object);
+        $first = end($object);
         return $this->getOperator()->compare($first);
     }
 }

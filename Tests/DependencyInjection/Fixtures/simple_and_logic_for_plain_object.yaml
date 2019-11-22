@@ -1,0 +1,7 @@
+maria:
+  test_scenario:
+    trigger: test.event
+    handler: SweetCode\MariaBundle\Tests\Stub\ValidActionHandler
+    rules:
+      amount: { gt: 100 }
+      campaign_id: { in: [1, 3, 5] }
