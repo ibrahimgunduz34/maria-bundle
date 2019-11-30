@@ -1,11 +1,21 @@
 language: php
 
-services:
-  - docker
+php:
+  - 7.2
+  - 7.1
+  - 7.0
+  - 5.6
+  - 5.6
 
-jobs:
-  include:
-    - name: PHPUnit with PHP 7.3
-      php: 7.3
-      before_script: composer install -n
-      script: vendor/bin/phpunit
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - phpenv rehash
+  - composer install --dev
+
+script:
+  - find ./src/ -name "*.php" -exec php -l {} \;
+  - vendor/bin/phpcs --standard=PSR2 --report=full src
+  - vendor/bin/phpunit
