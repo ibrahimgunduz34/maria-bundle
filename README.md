@@ -1,7 +1,7 @@
 # MariaBundle 
 [![Build Status](https://travis-ci.com/ibrahimgunduz34/maria-bundle.svg?token=vyj9YGL7pBUY54PzdkJC&branch=master)](https://travis-ci.com/ibrahimgunduz34/maria-bundle)
 [![GitHub release](https://img.shields.io/github/release/ibrahimgunduz34/maria-bundle.svg)](https://gitHub.com/ibrahimgunduz34/maria-bundle/releases/)
-[![GitHub license](https://img.shields.io/github/license/ibrahimgunduz34/maria-bundle.svg)](https://github.com/ibrahimgunduz34/maria-bundle/blob/master/Resources/docs/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ibrahimgunduz34/maria-bundle/blob/master/LICENSE)
 
 ## What is MariaBundle
 
