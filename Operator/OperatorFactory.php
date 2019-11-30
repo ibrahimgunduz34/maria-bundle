@@ -32,7 +32,8 @@ class OperatorFactory
         if (count($condition) > 1) {
             throw new InvalidConfigurationException(sprintf('Invalid rule definition %s => %s', $field, $condition));
         }
-        $operatorType = reset(array_keys($condition));
+        $operatorTypes = array_keys($condition);
+        $operatorType = reset($operatorTypes);
         $value = $condition[$operatorType];
 
         switch ($operatorType) {

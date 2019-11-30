@@ -1,6 +1,7 @@
 <?php
 namespace SweetCode\MariaBundle\Tests;
 
+use PHPUnit\Exception;
 use PHPUnit\Framework\TestCase;
 use SweetCode\MariaBundle\DependencyInjection\MariaExtension;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
@@ -38,12 +39,13 @@ class MariaExtensionTest extends TestCase
         $triggerEvent = $container->getDefinition($triggerEventServiceId);
         $this->assertEquals('%maria.event_listener.trigger.class%', $triggerEvent->getClass());
         $this->assertTrue($triggerEvent->hasTag('kernel.event_listener'));
+        $tag = $triggerEvent->getTag('kernel.event_listener');
         $this->assertEquals(
             [
                 'event' => 'test.event',
                 'method' => 'onTrigger'
             ],
-            reset($triggerEvent->getTag('kernel.event_listener'))
+            reset($tag)
         );
 
         $actionHandlerId = 'maria.handler.test_scenario.SweetCode\MariaBundle\Tests\Stub\ValidActionHandler';
@@ -53,9 +55,12 @@ class MariaExtensionTest extends TestCase
 
     public function testActionEventImplementationValidation()
     {
-        $this->expectException(InvalidConfigurationException::class);
-        $this->expectDeprecationMessage(
-            'Handler class needs to implement onAction method');
-        $this->getContainer('bad_action_event_implementation.yaml');
+        try {
+            $this->getContainer('bad_action_event_implementation.yaml');
+        } catch (\Exception $exception) {
+            $this->assertInstanceOf(InvalidConfigurationException::class, $exception);
+            $this->assertEquals('Handler class needs to implement onAction method', $exception->getMessage());
+        }
+
     }
 }

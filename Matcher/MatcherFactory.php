@@ -35,7 +35,9 @@ class MatcherFactory
                 self::MATCHER_FIRST,
                 self::MATCHER_LAST
             ];
-            if (!in_array(strtolower(reset(array_keys($scenarioRules))), $matchers)) {
+
+            $matchersInScenario = array_keys($scenarioRules);
+            if (!in_array(strtolower(reset($matchersInScenario)), $matchers)) {
                 $scenarioRules = ['default' => $scenarioRules];
             }
         }
@@ -50,7 +52,8 @@ class MatcherFactory
     private function createMatcher($scenarioRules)
     {
         $rules = reset($scenarioRules);
-        $matcherType = reset(array_keys($scenarioRules));
+        $keys = array_keys($scenarioRules);
+        $matcherType = reset($keys);
         $operator = $this->operatorFactory->create($rules);
 
         switch ($matcherType) {

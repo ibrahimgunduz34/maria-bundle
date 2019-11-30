@@ -14,7 +14,7 @@ parameters:
   maria.matcher.last.class: SweetCode\MariaBundle\Matcher\LastMatcher
   maria.matcher.none.class: SweetCode\MariaBundle\Matcher\NoneMatcher
 
-  maria.service_factory.matcher.class: SweetCode\MariaBundle\MAtcher\MatcherFactory
+  maria.service_factory.matcher.class: SweetCode\MariaBundle\Matcher\MatcherFactory
   maria.service_factory.operator.class: SweetCode\MariaBundle\Operator\OperatorFactory
 
 services:
