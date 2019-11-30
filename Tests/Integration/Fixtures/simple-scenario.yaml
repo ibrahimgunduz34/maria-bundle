@@ -1,0 +1,6 @@
+maria:
+  some_scenario:
+    trigger: some.event
+    handler: SweetCode\MariaBundle\Tests\Stub\ValidActionHandler
+    rules:
+        amount: {gt: 100}

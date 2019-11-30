@@ -37,13 +37,33 @@ class Configuration implements ConfigurationInterface
 
     private function buildScenarios(ArrayNodeDefinition $node)
     {
-        $node->fixXmlConfig('scenario')
+        $node
+            ->fixXmlConfig('scenario')
             ->useAttributeAsKey('name')
             ->arrayPrototype()
                 ->canBeEnabled()
                 ->children()
-                    ->scalarNode('trigger_event')->isRequired()->end()
-                    ->scalarNode('action_handler')->isRequired()->end()
+                    ->scalarNode('trigger')->isRequired()->end()
+                    ->arrayNode('handler')
+                        ->beforeNormalization()
+                            ->ifString()
+                            ->then(function ($v) {
+                                return ['reference' => $v, 'method' => 'onAction', 'serialize' => false];
+                            })
+                        ->end()
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('reference')->isRequired()->end()
+                            ->scalarNode('method')
+                                ->isRequired()
+                                ->defaultValue('onAction')
+                            ->end()
+                            ->booleanNode('serialize')
+                                ->isRequired()
+                                ->defaultValue(false)
+                            ->end()
+                        ->end()
+                    ->end()
                 ->end()
                 ->append($this->buildRules())
             ->end();
@@ -59,7 +79,6 @@ class Configuration implements ConfigurationInterface
         }
 
         $rootNode->fixXmlConfig('rule')
-            ->useAttributeAsKey('object_type')
             ->arrayPrototype()
                 ->variablePrototype()->end()
             ->end();

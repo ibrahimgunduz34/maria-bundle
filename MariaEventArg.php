@@ -11,6 +11,15 @@ class MariaEventArg extends Event
     private $data;
 
     /**
+     * MariaEventArg constructor.
+     * @param $data
+     */
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
      * @return mixed
      */
     public function getData()

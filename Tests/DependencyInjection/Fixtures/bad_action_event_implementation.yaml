@@ -1,0 +1,5 @@
+maria:
+  test_scenario:
+    trigger: test.event
+    handler: SweetCode\MariaBundle\Tests\Stub\InvalidActionHandler
+    rules: []

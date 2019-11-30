@@ -1,12 +1,12 @@
 <?php
-namespace SweetCode\MariaBundle\Comparator;
+namespace SweetCode\MariaBundle\Operator;
 
-class EqualComparator extends Comparator
+class EqualOperator extends Operator
 {
-    protected function accept($object)
+    protected function accept($data)
     {
+        //TODO: Refactor
         $field = $this->getField();
-        $data = $this->getObjectNromalizer()->normalize($object);
         if (!array_key_exists($field, $data)) {
             return false;
         }

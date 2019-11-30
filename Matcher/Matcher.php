@@ -1,24 +1,24 @@
 <?php
 namespace SweetCode\MariaBundle\Matcher;
 
-use SweetCode\MariaBundle\Comparator\Comparator;
+use SweetCode\MariaBundle\Operator\Operator;
 
 abstract class Matcher
 {
-    /** @var Comparator[] */
-    private $comparators;
+    /** @var Operator */
+    protected $operator;
 
-    public function __construct(array $comparators)
+    public function __construct(Operator $operator)
     {
-        $this->comparators = $comparators;
+        $this->operator = $operator;
     }
 
     /**
-     * @return Comparator[]
+     * @return Operator
      */
-    protected function getComparators()
+    protected function getOperator()
     {
-        return $this->comparators;
+        return $this->operator;
     }
 
     abstract public function match($object);

@@ -1,0 +1,17 @@
+maria:
+  first_scenario:
+    trigger: some.event
+    handler: SweetCode\MariaBundle\Tests\Stub\ValidActionHandler
+    rules:
+      amount: {gt: 400}
+  some_scenario:
+    trigger: some.event
+    handler: SweetCode\MariaBundle\Tests\Stub\ValidActionHandler
+    rules:
+      amount: {gt: 100}
+  other_scenario:
+    trigger: some.event
+    handler: SweetCode\MariaBundle\Tests\Stub\ValidActionHandler
+    rules:
+      amount: {gt: 200}
+
