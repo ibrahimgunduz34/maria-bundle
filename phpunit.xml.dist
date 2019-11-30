@@ -8,11 +8,12 @@
         convertWarningsToExceptions = "true"
         processIsolation            = "false"
         stopOnFailure               = "false"
-        syntaxCheck                 = "false"
         bootstrap                   = "./vendor/autoload.php">
-    <testsuite>
-        <directory>Tests</directory>
-    </testsuite>
+    <testsuites>
+        <testsuite name="MariaBundle">
+            <directory>Tests</directory>
+        </testsuite>
+    </testsuites>
 
     <filter>
         <whitelist>
