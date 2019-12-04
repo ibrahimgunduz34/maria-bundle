@@ -44,28 +44,9 @@ class Configuration implements ConfigurationInterface
                 ->canBeEnabled()
                 ->children()
                     ->scalarNode('trigger')->isRequired()->end()
-                    ->arrayNode('handler')
-                        ->beforeNormalization()
-                            ->ifString()
-                            ->then(function ($v) {
-                                return ['reference' => $v, 'method' => 'onAction', 'serialize' => false];
-                            })
-                        ->end()
-                        ->addDefaultsIfNotSet()
-                        ->children()
-                            ->scalarNode('reference')->isRequired()->end()
-                            ->scalarNode('method')
-                                ->isRequired()
-                                ->defaultValue('onAction')
-                            ->end()
-                            ->booleanNode('serialize')
-                                ->isRequired()
-                                ->defaultValue(false)
-                            ->end()
-                        ->end()
-                    ->end()
+                    ->append($this->buildHandler())
+                    ->append($this->buildRules())
                 ->end()
-                ->append($this->buildRules())
             ->end();
     }
 
@@ -75,7 +56,7 @@ class Configuration implements ConfigurationInterface
         if (method_exists(TreeBuilder::class, 'getRootNode')) {
             $rootNode = $treeBuilder->getRootNode();
         } else {
-            $rootNode = $treeBuilder->root($this->name);
+            $rootNode = $treeBuilder->root('rules');
         }
 
         $rootNode->fixXmlConfig('rule')
@@ -84,5 +65,36 @@ class Configuration implements ConfigurationInterface
             ->end();
         //TODO: Validation need
         return $rootNode;
+    }
+
+    private function buildHandler()
+    {
+        $treeBuilder = new TreeBuilder('handler');
+        if (method_exists(TreeBuilder::class, 'getRootNode')) {
+            $node = $treeBuilder->getRootNode();
+        } else {
+            $node = $treeBuilder->root('handler');
+        }
+
+        $node->beforeNormalization()
+                ->ifString()
+                ->then(function ($v) {
+                    return ['reference' => $v, 'method' => 'onAction', 'serialize' => false];
+                })
+                ->end()
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('reference')->isRequired()->end()
+                ->scalarNode('method')
+                    ->isRequired()
+                    ->defaultValue('onAction')
+                ->end()
+                ->booleanNode('serialize')
+                    ->isRequired()
+                    ->defaultValue(false)
+                ->end()
+            ->end();
+
+        return $node;
     }
 }

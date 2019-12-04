@@ -1,7 +1,6 @@
 <?php
 namespace SweetCode\MariaBundle\Tests;
 
-use PHPUnit\Exception;
 use PHPUnit\Framework\TestCase;
 use SweetCode\MariaBundle\DependencyInjection\MariaExtension;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
