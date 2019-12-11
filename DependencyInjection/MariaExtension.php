@@ -16,8 +16,6 @@ class MariaExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(array(__DIR__ . '/../Resources/config')));
-        $loader->load("matchers.yaml");
-        $loader->load("comparators.yaml");
         $loader->load("maria.yaml");
 
         $configuration = $this->getConfiguration($configs, $container);
