@@ -82,21 +82,28 @@ maria:
           
           # amount > 100 AND category_id IN [1, 2, 3]
           amount: {gt: 100}
-          category_id: {in: [1,2,3]}   
+          category_id: { in: [1,2,3] }   
           
           # (amount > AND category_id=1) OR (amount < 500 AND category_id IN [5,6])
           - amount: {gt: 100}
-            category_id: {eql: 1}
+            category_id: { eql: 1 }
           - amount: [lt: 500]
-            category_id: [in: [5,6]]
+            category_id: { in: [5,6] }
             
           # (category_id IN [1,2] AND amount BETWEEN 100-200) OR (category_id = 3 AND amount >= 200
-          - amount: [btw: [100, 200]]
-            category_id: [in: [1, 2]]
+          - amount: { btw: [100, 200] }
+            category_id: { in: [1, 2] }
           - amount: [lte: 200]
-            category_id: [eql: 3]                 
+            category_id: { eql: 3 }
+          
+          # Matching by RegExp
+          - { category_id: { in: [1,5] }, description: { regex: /awesome/i } }                 
 ```
 
+## See Also
+* [Iterable Matchers](/Resources/docs/matchers.md)
+* [Arithmetic And Logic Operators](/Resources/docs/operators.md)
+ 
 ## Example Usage
 
 Define the following configuration into `config/packages/maria.yaml`
@@ -245,7 +252,7 @@ Enjoy!
 * Validation improvement for configuration.
 
 ## License:
-You can access the license documentation [here](/Resources/docs/LICENSE).
+You can access the license documentation [here](/LICENSE).
 
 ## Credits:
 Bundles structure, extension tests and the documentation partially inspired `RabbitMqBundle`.

@@ -24,7 +24,7 @@ class OperatorFactory
     /**
      * @param $field
      * @param $condition
-     * @return EqualOperator|GreaterOperator|GreaterOrEqualOperator|InOperator|LessOperator|LessOrEqualOperator|BetweenOperator
+     * @return EqualOperator|GreaterOperator|GreaterOrEqualOperator|InOperator|LessOperator|LessOrEqualOperator|BetweenOperator|RegexOperator
      */
     private function createComparisionOperator($field, $condition)
     {
@@ -51,6 +51,8 @@ class OperatorFactory
                 return new InOperator($field, $value);
             case 'btw':
                 return new BetweenOperator($field, $value);
+            case "regex":
+                return new RegexOperator($field, $value);
             default:
                 throw new InvalidConfigurationException('Invalid operator type: ' . $operatorType);
         }
