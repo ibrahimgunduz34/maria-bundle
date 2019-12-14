@@ -10,6 +10,7 @@ class MatcherFactory
     const MATCHER_NONE = 'none';
     const MATCHER_FIRST = 'first';
     const MATCHER_LAST = 'last';
+    const MATCHER_DEFAULT = 'default';
     /** @var OperatorFactory */
     private $operatorFactory;
 
@@ -67,7 +68,7 @@ class MatcherFactory
                 return new FirstMatcher($operator);
             case self::MATCHER_LAST:
                 return new LastMatcher($operator);
-            case 'default':
+            case self::MATCHER_DEFAULT:
                 return new DefaultMatcher($operator);
         }
     }
