@@ -4,7 +4,7 @@
 namespace SweetCode\MariaBundle;
 
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class MariaEventArg extends Event
 {
