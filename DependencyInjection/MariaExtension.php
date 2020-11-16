@@ -71,6 +71,8 @@ class MariaExtension extends Extension
 
         $definition = new Definition($ref);
         $definition->setPublic(true); //For tests.
+        $definition->setAutowired(true);
+        $definition->setAutoconfigured(true);
 
 
         if (!method_exists($definition->getClass(), $handler['method'])) {
