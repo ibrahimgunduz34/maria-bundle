@@ -147,7 +147,7 @@ $context = [
     'amount'        => $order->getAmount(),
     'category_id'   => $order->getCategoryId(),
 ]
-$eventDispatcher->dispatch('cart.updated', new \SweetCode\MariaBundle\MariaEventArg($context));
+$eventDispatcher->dispatch(new \SweetCode\MariaBundle\MariaEventArg($context), 'cart.updated');
 //...
 ```
 
