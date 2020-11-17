@@ -67,7 +67,7 @@ class SimpleIntegrationTest extends TestCase
         /** @var EventDispatcherInterface $dispatcher */
         $dispatcher = $container->get('event_dispatcher');
 
-        $dispatcher->dispatch('some.event', $mariaEventArg);
+        $dispatcher->dispatch($mariaEventArg, 'some.event');
     }
 
     public function testUnmatchedScenario()
@@ -82,7 +82,7 @@ class SimpleIntegrationTest extends TestCase
         /** @var EventDispatcherInterface $dispatcher */
         $dispatcher = $container->get('event_dispatcher');
 
-        $dispatcher->dispatch('some.event', $mariaEventArg);
+        $dispatcher->dispatch($mariaEventArg, 'some.event');
     }
 
     public function testConflictedScenarios()
@@ -99,7 +99,7 @@ class SimpleIntegrationTest extends TestCase
         /** @var EventDispatcherInterface $dispatcher */
         $dispatcher = $container->get('event_dispatcher');
 
-        $dispatcher->dispatch('some.event', $mariaEventArg);
+        $dispatcher->dispatch($mariaEventArg, 'some.event');
     }
 
     /**
