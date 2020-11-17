@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class SimpleIntegrationTest extends TestCase
 {
@@ -67,7 +67,7 @@ class SimpleIntegrationTest extends TestCase
         /** @var EventDispatcherInterface $dispatcher */
         $dispatcher = $container->get('event_dispatcher');
 
-        $dispatcher->dispatch('some.event', $mariaEventArg);
+        $dispatcher->dispatch($mariaEventArg, 'some.event');
     }
 
     public function testUnmatchedScenario()
@@ -82,7 +82,7 @@ class SimpleIntegrationTest extends TestCase
         /** @var EventDispatcherInterface $dispatcher */
         $dispatcher = $container->get('event_dispatcher');
 
-        $dispatcher->dispatch('some.event', $mariaEventArg);
+        $dispatcher->dispatch($mariaEventArg, 'some.event');
     }
 
     public function testConflictedScenarios()
@@ -99,7 +99,7 @@ class SimpleIntegrationTest extends TestCase
         /** @var EventDispatcherInterface $dispatcher */
         $dispatcher = $container->get('event_dispatcher');
 
-        $dispatcher->dispatch('some.event', $mariaEventArg);
+        $dispatcher->dispatch($mariaEventArg, 'some.event');
     }
 
     /**
